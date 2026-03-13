@@ -33,6 +33,7 @@ $stmt = $pdo->query($sql);
 
 </tr>
 
+
 <?php } ?>
 
 </table>
