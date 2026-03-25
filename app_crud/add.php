@@ -27,12 +27,12 @@ if(isset($_POST['ok']))
         if($erreur == false)
         {
             $sql = "INSERT INTO utilisateur (nom, email, telephone, age)
-                    VALUES (:name,:email,:telephone,:age)";
+                    VALUES (:nom,:email,:telephone,:age)";
 
             $stm = $pdo->prepare($sql);
 
             $stm->execute([
-                "name" => $name,
+                "nom" => $name,
                 "email" => $email,
                 "telephone" => $telephone,
                 "age" => $age
