@@ -16,16 +16,13 @@ $stmt = $pdo->query($sql);
 </th>
 <th>Actions</th>
 </tr>
-
 <?php while($row = $stmt->fetch(PDO::FETCH_ASSOC)){ ?>
-
 <tr>
 <td><?= $row["id"] ?></td>
 <td><?= $row["nom"] ?></td>
 <td><?= $row["email"] ?></td>
 <td><?= $row["telephone"] ?></td>
 <td><?= $row["age"] ?></td>
-
 <td>
 <a href="modifier.php?id=<?= $row["id"] ?>">Modifier</a>
 <a href="delete.php?id=<?= $row["id"] ?>">Supprimer</a>
