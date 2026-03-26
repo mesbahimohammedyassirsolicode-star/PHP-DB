@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 
-$errors = [];
+$errors = '';
 
 if(isset($_POST['submit'])) {
 
@@ -12,19 +12,19 @@ if(isset($_POST['submit'])) {
 
     // Validation
     if(empty($name)) {
-        $errors[] = "Name is required";
+        $errors = "Name is required";
     }
 
     if(empty($price) || !is_numeric($price)) {
-        $errors[] = "Valid price is required";
+        $errors = "Valid price is required";
     }
 
     if(empty($description)) {
-        $errors[] = "Description is required";
+        $errors = "Description is required";
     }
 
     if(empty($category)) {
-        $errors[] = "Category is required";
+        $errors = "Category is required";
     }
 
     // Insert
@@ -33,7 +33,7 @@ if(isset($_POST['submit'])) {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$name, $price, $description, $category]);
 
-        header("Location: catalogue.php?success=1");
+        header("Location: admin.php?success=1");
         exit;
     }
 }
@@ -49,13 +49,9 @@ if(isset($_POST['submit'])) {
 
 <h2>Add Product</h2>
 
-<?php if(!empty($errors)): ?>
-    <ul style="color:red;">
-        <?php foreach($errors as $error): ?>
-            <li><?php echo $error; ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
+<p>
+    <?= $errors ?>
+</p>
 
 <form method="POST">
     <input type="text" name="name" placeholder="Name"><br><br>
@@ -65,7 +61,7 @@ if(isset($_POST['submit'])) {
     <button type="submit" name="submit">Add</button>
 </form>
 
-<a href="catalogue.php">Back</a>
+<a href="admin.php">Back</a>
 
 </body>
 </html>
